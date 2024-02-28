@@ -17,7 +17,7 @@ fn main() {
     assert_eq!(*nth, 8);
 }
 
-fn nth_item<'a, 'b: 'a>(data: &'b [usize], n: &'a usize) -> &'b usize {
+fn nth_item<'a, 'b>(data: &'b [usize], n: &'a usize) -> &'b usize {
     &data[*n]
 }
 
@@ -26,13 +26,13 @@ fn increased_by_first_item<'a>(data: &'a [usize], n: &'a mut usize) -> &'a mut u
     n
 }
 
-struct TwoValues<'a> {
+struct TwoValues<'a, 'b> {
     first: &'a usize,
-    second: &'a usize,
+    second: &'b usize,
 }
 
-impl<'a> TwoValues<'a> {
-    pub fn new(first: &'a usize, second: &'a usize) -> Self {
+impl<'a, 'b> TwoValues<'a, 'b> {
+    pub fn new(first: &'a usize, second: &'b usize) -> Self {
         Self { first, second }
     }
 
@@ -40,7 +40,7 @@ impl<'a> TwoValues<'a> {
         self.first
     }
 
-    pub fn get_second(&self) -> &'a usize {
+    pub fn get_second(&self) -> &'b usize {
         self.second
     }
 }

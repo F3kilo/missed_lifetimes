@@ -17,11 +17,11 @@ fn main() {
     assert_eq!(*nth, 8);
 }
 
-fn nth_item<'a, 'b>(data: &'b [usize], n: &'a usize) -> &'b usize {
+fn nth_item<'a, 'b>(data: &'a [usize], n: &'b usize) -> &'a usize {
     &data[*n]
 }
 
-fn increased_by_first_item<'a>(data: &'a [usize], n: &'a mut usize) -> &'a mut usize {
+fn increased_by_first_item<'a, 'b>(data: &'a [usize], n: &'b mut usize) -> &'b mut usize {
     *n += data[0];
     n
 }
